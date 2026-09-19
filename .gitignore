@@ -1,0 +1,12 @@
+.env
+credentials.json
+token.json
+output/
+agent.log
+processing_report.xlsx
+output.xlsx
+__pycache__/
+*.pyc
+venv/
+.venv/
+submission.zip

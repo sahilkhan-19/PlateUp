@@ -1,0 +1,21 @@
+AI Food Image Automation Agent — built with Python, Gemini Vision, DuckDuckGo image search, and Google Drive API.
+
+What it does: reads food item names from an Excel file, finds suitable images online, validates quality (blur, resolution, dish match via Gemini), processes to 1800x1200 JPG (<10 MB), renames to the exact food name, and uploads to a Google Drive folder.
+
+Tech: Python 3.10+, openpyxl, Pillow, OpenCV, requests, duckduckgo-search, google-genai (Gemini 2.0 Flash), Google Drive API (OAuth desktop flow), python-dotenv, tqdm.
+
+How to run:
+  1. pip install -r requirements.txt
+  2. Copy .env.example to .env and fill in GEMINI_API_KEY and DRIVE_FOLDER_ID
+  3. Place credentials.json (OAuth desktop app) in the project root
+  4. python agent.py --input input.xlsx --limit 5   (quick test)
+     python agent.py --input input.xlsx              (full run, ~260 items)
+
+Key assumptions:
+- Duplicates processed once, reused for all matching rows
+- Line-break-separated names treated as separate items
+- Variant names ([Half], Full, etc.) searched by base dish, saved with exact name
+- Best borderline image used and flagged if no perfect match found
+- Output: 1800x1200 JPG, quality ~90, always <10 MB
+
+Google Drive folder: <PASTE LINK HERE>
